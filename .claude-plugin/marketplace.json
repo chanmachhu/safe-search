@@ -1,0 +1,11 @@
+{
+  "name": "safe-search",
+  "owner": { "name": "chanmachhu" },
+  "plugins": [
+    {
+      "name": "safe-search",
+      "source": "./",
+      "description": "Skill /safe-search (standard et strict) et agent verifier pour des réponses sourcées et vérifiées."
+    }
+  ]
+}

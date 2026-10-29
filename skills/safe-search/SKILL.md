@@ -126,7 +126,7 @@ Skip statements that copy a short fact word for word from an official or primary
 **2. Group the selected statements by source URL.** A statement cited to two sources goes in both groups. Each group becomes one checker: one page to open, several statements to compare against it.
 
 **3. Start one checker per source, all at once** (the Agent tool, several calls in the same turn).
-- Use the agent type **`verifier`** (provided with this skill in `agents/verifier.md`: it has only WebSearch and WebFetch, so it starts with a very small context, about 3,500 tokens instead of about 72,000 for a default agent). If the type `verifier` does not exist in this session, do not start any other agent: do the checks yourself as described at the end of this step.
+- Use the agent type **`verifier`** (provided with this skill in `agents/verifier.md`: it has only WebSearch and WebFetch, so it starts with a very small context, about 3,500 tokens instead of about 72,000 for a default agent). If the skill is installed as a plugin, the agent type may be listed as `safe-search:verifier`: use whichever of the two names exists in this session. If neither exists, do not start any other agent: do the checks yourself as described at the end of this step.
 - Choose the model per group: **haiku** (the default of `verifier`) when the statements are exact matches (a number, date, title, author, verbatim quote); pass `model: sonnet` when the group needs judgment (wording strength, who said or found something, whether two figures are comparable, whether the opening matches the details).
 - Put the whole brief in the message and read the verdict from the agent's reply. Do not use files.
 

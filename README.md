@@ -22,10 +22,26 @@ Règles : 8 faits clés au plus, un fait par ligne, 1 à 2 sources par fait, sou
 
 Ce que le skill ne fait pas : vérifier qu'une image a été retouchée ou réutilisée, ni tenir une liste de sites douteux.
 
+## Installation (plugin)
+
+Le dépôt est un plugin : il contient le skill (`skills/`), l'agent (`agents/`) et les fichiers `.claude-plugin/plugin.json` et `.claude-plugin/marketplace.json`. Il n'utilise aucun connecteur : seulement les outils intégrés WebSearch et WebFetch.
+
+```
+/plugin marketplace add chanmachhu/safe-search
+/plugin install safe-search@safe-search
+```
+
+Utilisation : `/safe-search <question ou affirmation>` ou `/safe-search strict <question ou affirmation>`.
+
+À tester : le nom exact de l'agent une fois le plugin installé (`verifier` ou `safe-search:verifier`). Le skill accepte les deux ; si aucun n'existe, la vérification est faite par l'assistant lui-même et signalée comme non indépendante.
+
 ## Contenu du dépôt
 
 ```
 skills/safe-search/SKILL.md   le skill
+.claude-plugin/plugin.json     description du plugin
+.claude-plugin/marketplace.json  permet d'installer le plugin depuis GitHub
+LICENSE                       licence MIT
 agents/verifier.md            l'agent vérificateur utilisé par le mode strict
 docs/RAPPORT-test.md          rapport du test d'évaluation
 docs/REPONSES.md              les 15 réponses du test et les erreurs relevées (lisible sur GitHub)
@@ -37,7 +53,7 @@ Le mode strict lance un petit agent par source citée pour revérifier les affir
 
 L'agent `verifier` est limité à **WebSearch et WebFetch** (les deux seuls outils dont un vérificateur a besoin : trouver la page, l'ouvrir) et tourne sur Haiku. Mesure : **3 487 tokens** pour le même test à vide, soit environ 21 fois moins. Les consignes sont dans le message de lancement et le verdict revient dans la réponse de l'agent, sans fichiers.
 
-Installation : copier `agents/verifier.md` dans `.claude/agents/` (projet) ou `~/.claude/agents/` (global), **avant de démarrer la session** ; un agent ajouté en cours de session n'est pas reconnu. Sans lui, le skill ne lance aucun autre agent : la vérification est faite par l'assistant lui-même et signalée comme non indépendante.
+Installation : en plugin (voir ci-dessous), l'agent est installé avec le skill. Sans plugin, copier `agents/verifier.md` dans `.claude/agents/` (projet) ou `~/.claude/agents/` (global), **avant de démarrer la session** ; un agent ajouté en cours de session n'est pas reconnu. Sans lui, le skill ne lance aucun autre agent : la vérification est faite par l'assistant lui-même et signalée comme non indépendante.
 
 Coût mesuré : un vérificateur `verifier` consomme environ 9 500 tokens (contre environ 72 000 pour un agent par défaut) ; le mode strict coûte environ 117 000 tokens par réponse contre environ 84 000 en standard.
 

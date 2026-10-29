@@ -1,0 +1,6 @@
+{
+  "name": "safe-search",
+  "version": "1.0.0",
+  "description": "Réponses factuelles et fact-check avec sources ouvertes, datées et vérifiées ; mode strict avec agents vérificateurs indépendants.",
+  "license": "MIT"
+}
